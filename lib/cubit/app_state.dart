@@ -7,7 +7,6 @@ class AppState extends Equatable {
   final String countryTimeZone;
   final List<AlarmSettings> activeAlarmList;
   final List<AlarmSettings> alarmList;
-  final List<int> activeAlarmListIndex;
   final bool creating;
   final DateTime selectedDateTime;
   final bool loopAudio;
@@ -27,7 +26,7 @@ class AppState extends Equatable {
       required this.vibrate,
       required this.volume,
       required this.assetAudio,
-      required this.activeAlarmListIndex});
+     });
 
   AppState copyWith({
     bool? loading,
@@ -35,7 +34,6 @@ class AppState extends Equatable {
     int? actionCount,
     List<AlarmSettings>? alarmList,
     List<AlarmSettings>? activeAlarmList,
-    List<int>? activeAlarmListIndex,
     bool? creating,
     DateTime? selectedDateTime,
     bool? loopAudio,
@@ -55,7 +53,6 @@ class AppState extends Equatable {
       volume: volume ?? this.volume,
       assetAudio: assetAudio ?? this.assetAudio,
       loading: loading ?? this.loading,
-      activeAlarmListIndex: activeAlarmListIndex ?? this.activeAlarmListIndex,
     );
   }
 
@@ -72,6 +69,5 @@ class AppState extends Equatable {
         volume,
         assetAudio,
         loading,
-        activeAlarmListIndex
       ];
 }

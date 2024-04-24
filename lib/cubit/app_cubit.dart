@@ -16,18 +16,18 @@ class AppCubit extends Cubit<AppState> {
   AppCubit()
       : super(
           AppState(
-              volume: null,
-              countryTimeZone: '',
-              activeAlarmList: const [],
-              alarmList: const [],
-              actionCount: 0,
-              assetAudio: '',
-              creating: true,
-              selectedDateTime: DateTime.now(),
-              loopAudio: false,
-              vibrate: false,
-              loading: false,
-              activeAlarmListIndex: const []),
+            volume: null,
+            countryTimeZone: '',
+            activeAlarmList: const [],
+            alarmList: const [],
+            actionCount: 0,
+            assetAudio: '',
+            creating: true,
+            selectedDateTime: DateTime.now(),
+            loopAudio: false,
+            vibrate: false,
+            loading: false,
+          ),
         );
   late List<AlarmSettings> alarmList;
   List<int> activeAlarmListIndex = [];
@@ -93,7 +93,6 @@ class AppCubit extends Cubit<AppState> {
             alarmList: alarmList,
             activeAlarmList: activeAlarmList),
       );
-
     } else {
       activeAlarmListIndex.add(id);
 
@@ -104,10 +103,10 @@ class AppCubit extends Cubit<AppState> {
 
       emit(
         state.copyWith(
-            actionCount: state.actionCount + 1,
-            alarmList: alarmList,
-            activeAlarmList: activeAlarmList,
-            activeAlarmListIndex: activeAlarmListIndex),
+          actionCount: state.actionCount + 1,
+          alarmList: alarmList,
+          activeAlarmList: activeAlarmList,
+        ),
       );
     }
   }
@@ -115,32 +114,31 @@ class AppCubit extends Cubit<AppState> {
   Future<void> navigateToAlarmScreen(
       AlarmSettings? settings, BuildContext context) async {
     await showModalBottomSheet<bool?>(
-        context: context,
-        isScrollControlled: true,
-        backgroundColor: ThemeDetector().isDarkModeEnabled(context)
-            ? const Color(0xFF15264f)
-            : MyColors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24),
-            topRight: Radius.circular(24),
-          ),
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: ThemeDetector().isDarkModeEnabled(context)
+          ? const Color(0xFF15264f)
+          : MyColors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
         ),
-        builder: (context) {
-          return FractionallySizedBox(
-            heightFactor: 0.75,
-            child: CreateEditScreen(alarmSettings: settings),
-          );
-        });
+      ),
+      builder: (context) {
+        return FractionallySizedBox(
+          heightFactor: 0.75,
+          child: CreateEditScreen(alarmSettings: settings),
+        );
+      },
+    );
 
-    /////////////////////////
     emit(
       state.copyWith(
           activeAlarmList: Alarm.getAlarms(),
           actionCount: state.actionCount + 1,
           alarmList: alarmList),
     );
-    // if (res != null && res == true) loadAlarms();
   }
 
   Future<void> checkAndroidNotificationPermission() async {
@@ -219,7 +217,7 @@ class AppCubit extends Cubit<AppState> {
       volume: state.volume,
       assetAudioPath: state.assetAudio,
       notificationTitle: 'Flutter Clock',
-      notificationBody: 'Your alarm  is ringing, Tap to view',
+      notificationBody: 'Your alarm  is ringing!',
     );
     if (!state.creating) {
       alarmList.remove(
@@ -233,7 +231,6 @@ class AppCubit extends Cubit<AppState> {
     activeAlarmList.add(alarmSettings);
     emit(
       state.copyWith(
-        activeAlarmListIndex: activeAlarmListIndex,
         activeAlarmList: activeAlarmList + [alarmSettings],
         alarmList: alarmList,
         actionCount: state.actionCount + 1,
@@ -301,7 +298,6 @@ class AppCubit extends Cubit<AppState> {
           selectedDateTime: DateTime.now().add(
             const Duration(minutes: 1),
           ),
-          //selectedDateTime:state. selectedDateTime.copyWith(second: 0, millisecond: 0),
           loopAudio: true,
           vibrate: true,
           volume: null,
