@@ -6,10 +6,10 @@ import 'package:flutter_clock/shared/alarm_item_widget.dart';
 import 'package:flutter_clock/shared/appbar_widget.dart';
 import 'package:flutter_clock/shared/no_alarm_widget.dart';
 
-class SecondTab extends StatelessWidget {
+class AlarmListPage extends StatelessWidget {
   final void Function() onClockPress;
 
-  const SecondTab({super.key, required this.onClockPress});
+  const AlarmListPage({super.key, required this.onClockPress});
 
   @override
   Widget build(BuildContext context) {
