@@ -4,7 +4,6 @@ This Flutter alarm app utilizes multiple technologies such as flutter_bloc, alar
 It's important to mention that the app's UI/UX was designed by me.I invested a lot of effort into making this app and hopes that You will find it interesting. If you do, please star it ⭐️
 
 
-![0](docs/screenshots/img0.png) 
 ![1](docs/screenshots/img1.png) 
 ![2](docs/screenshots/img2.png) 
 ![3](docs/screenshots/img3.png) 
