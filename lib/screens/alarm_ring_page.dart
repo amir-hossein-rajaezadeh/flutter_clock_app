@@ -1,6 +1,8 @@
 import 'package:alarm/alarm.dart';
 import 'package:alarm/model/alarm_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clock/cubit/app_cubit.dart';
 
 class AlarmRingScreen extends StatelessWidget {
   final AlarmSettings alarmSettings;
@@ -46,8 +48,12 @@ class AlarmRingScreen extends StatelessWidget {
                 ),
                 RawMaterialButton(
                   onPressed: () {
-                    Alarm.stop(alarmSettings.id)
-                        .then((_) => Navigator.pop(context));
+                    Alarm.stop(alarmSettings.id).then(
+                      (value) {
+                          Navigator.pop(context);
+                          context.read<AppCubit>().getAlarmList();
+                      },
+                    );
                   },
                   child: Text(
                     "Stop",

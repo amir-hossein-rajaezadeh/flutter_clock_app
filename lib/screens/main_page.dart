@@ -1,12 +1,9 @@
 import 'dart:async';
-
 import 'package:alarm/alarm.dart';
 import 'package:alarm/model/alarm_settings.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clock/cubit/app_cubit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -55,9 +52,9 @@ class _MainPageState extends State<MainPage>
   }
 
   Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {
-    if (context.mounted) {
-      await context.push("/ringAlarm", extra: alarmSettings);
-      context.read<AppCubit>().getIP();
+ {    if (context.mounted) {
+   context.push("/ringAlarm", extra: alarmSettings);
+ }
     }
   }
 
@@ -107,9 +104,9 @@ class _MainPageState extends State<MainPage>
                     ),
                   ),
                   SizedBox(
-                    height: 86,
+                    height: 95,
                     child: Container(
-                      margin: const EdgeInsets.only(bottom: 12),
+                      margin: const EdgeInsets.only(bottom: 18),
                       child: TabBar(
                         indicatorWeight: 15,
                         enableFeedback: true,
@@ -204,5 +201,3 @@ Future<void> checkAndroidScheduleExactAlarmPermission() async {
     );
   }
 }
-
-

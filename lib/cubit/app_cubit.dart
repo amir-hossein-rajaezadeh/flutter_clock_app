@@ -175,6 +175,15 @@ class AppCubit extends Cubit<AppState> {
     }
   }
 
+  void getAlarmList() {
+    final activeAlarmList = Alarm.getAlarms();
+    emit(
+      state.copyWith(
+        alarmList: alarmList,
+          activeAlarmList: activeAlarmList, actionCount: state.actionCount + 1),
+    );
+  }
+
   Future<void> pickTime(BuildContext context) async {
     final res = await showTimePicker(
       initialTime: TimeOfDay.fromDateTime(state.selectedDateTime),
