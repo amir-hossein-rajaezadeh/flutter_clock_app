@@ -29,10 +29,9 @@ Widget buildAlarmItem(BuildContext context, AlarmSettings alarmItem, int index,
           background: Container(
             height: 70,
             decoration: BoxDecoration(
-              color: MyColors.lightRed,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(0),
             ),
-            alignment: Alignment.topLeft,
+            alignment: Alignment.centerLeft,
             child: const Padding(
               padding: EdgeInsets.only(
                 left: 10,

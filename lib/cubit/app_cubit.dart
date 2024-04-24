@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clock/shared/sound_item_widget.dart';
-import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:public_ip_address/public_ip_address.dart';
 import '../screens/create_edit_alarm_page.dart';
@@ -56,7 +55,11 @@ class AppCubit extends Cubit<AppState> {
   ];
   List<AlarmSettings> activeAlarmList = [];
   Future<void> getIP() async {
-    alarmList = Alarm.getAlarms();
+    bool calledFirstTime = false;
+    calledFirstTime = true;
+    if (calledFirstTime) {
+      alarmList = Alarm.getAlarms();
+    }
     emit(
       state.copyWith(
         actionCount: state.actionCount + 1,
@@ -111,23 +114,6 @@ class AppCubit extends Cubit<AppState> {
             activeAlarmListIndex: activeAlarmListIndex),
       );
     }
-  }
-
-  Future<void> navigateToRingScreen(
-      BuildContext context, AlarmSettings alarmSettings) async {
-    if (context.mounted) {
-      await context.push("/ringAlarm", extra: alarmSettings);
-      activeAlarmList = Alarm.getAlarms();
-      emit(
-        state.copyWith(
-            activeAlarmList: activeAlarmList,
-            actionCount: state.actionCount + 1),
-      );
-    } else {
-      print("errrorr");
-    }
-
-    //loadAlarms();
   }
 
   Future<void> navigateToAlarmScreen(
@@ -240,7 +226,9 @@ class AppCubit extends Cubit<AppState> {
       notificationBody: 'Your alarm  is ringing, Tap to view',
     );
     if (!state.creating) {
-      alarmList.remove(Alarm.getAlarm(alarmId ?? 0));
+      alarmList.remove(
+        Alarm.getAlarm(alarmId ?? 0),
+      );
     }
 
     final bool createdSuccessfully = await Alarm.set(
@@ -273,8 +261,6 @@ class AppCubit extends Cubit<AppState> {
         actionCount: state.actionCount + 1,
       ),
     );
-    print(
-        "done active${Alarm.getAlarms().length} , alarmList ${alarmList.length}");
   }
 
   String getDay() {

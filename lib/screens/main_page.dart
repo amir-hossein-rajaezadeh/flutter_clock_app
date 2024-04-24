@@ -5,10 +5,9 @@ import 'package:alarm/model/alarm_settings.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../cubit/app_cubit.dart';
+
 import 'alarm_list_page.dart';
 import 'clock_page.dart';
 
@@ -47,12 +46,17 @@ class _MainPageState extends State<MainPage>
       checkAndroidScheduleExactAlarmPermission();
     }
     //loadAlarms();
-    subscription ??= Alarm.ringStream.stream.listen(
-        (alarmSettings) => context.read<AppCubit>().navigateToRingScreen(
-              context,
+    subscription ??=
+        Alarm.ringStream.stream.listen((alarmSettings) => navigateToRingScreen(
               alarmSettings,
             ));
     super.initState();
+  }
+
+  Future<void> navigateToRingScreen(AlarmSettings alarmSettings) async {
+    if (context.mounted) {
+      await context.push("/ringAlarm", extra: alarmSettings);
+    }
   }
 
   @override
@@ -125,27 +129,70 @@ class _MainPageState extends State<MainPage>
       );
     }
   }
+}
 
-  Future<void> checkAndroidExternalStoragePermission() async {
-    final status = await Permission.storage.status;
-    if (status.isDenied) {
-      alarmPrint('Requesting external storage permission...');
-      final res = await Permission.storage.request();
-      alarmPrint(
-        'External storage permission ${res.isGranted ? '' : 'not'} granted.',
-      );
-    }
+class BottomBar extends StatelessWidget {
+  const BottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(50, 0, 50, 50),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          FloatingActionButton(
+            onPressed: () {
+              context.push("/createAlarm");
+            },
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            elevation: 5,
+            highlightElevation: 3,
+            child: const Text(
+              "+",
+              style: TextStyle(
+                  color: Color(0xff253165),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25),
+            ),
+          )
+        ],
+      ),
+    );
   }
+}
 
-  Future<void> checkAndroidScheduleExactAlarmPermission() async {
-    final status = await Permission.scheduleExactAlarm.status;
-    alarmPrint('Schedule exact alarm permission: $status.');
-    if (status.isDenied) {
-      alarmPrint('Requesting schedule exact alarm permission...');
-      final res = await Permission.scheduleExactAlarm.request();
-      alarmPrint(
-        'Schedule exact alarm permission ${res.isGranted ? '' : 'not'} granted.',
-      );
-    }
+Future<void> checkAndroidNotificationPermission() async {
+  final status = await Permission.notification.status;
+  if (status.isDenied) {
+    alarmPrint('Requesting notification permission...');
+    final res = await Permission.notification.request();
+    alarmPrint(
+      'Notification permission ${res.isGranted ? '' : 'not '}granted.',
+    );
+  }
+}
+
+Future<void> checkAndroidExternalStoragePermission() async {
+  final status = await Permission.storage.status;
+  if (status.isDenied) {
+    alarmPrint('Requesting external storage permission...');
+    final res = await Permission.storage.request();
+    alarmPrint(
+      'External storage permission ${res.isGranted ? '' : 'not'} granted.',
+    );
+  }
+}
+
+Future<void> checkAndroidScheduleExactAlarmPermission() async {
+  final status = await Permission.scheduleExactAlarm.status;
+  alarmPrint('Schedule exact alarm permission: $status.');
+  if (status.isDenied) {
+    alarmPrint('Requesting schedule exact alarm permission...');
+    final res = await Permission.scheduleExactAlarm.request();
+    alarmPrint(
+      'Schedule exact alarm permission ${res.isGranted ? '' : 'not'} granted.',
+    );
   }
 }
