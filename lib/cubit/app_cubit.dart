@@ -81,9 +81,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   Future<void> onTogglePressed(int id, int index, bool toggle) async {
-    print("toggle");
     if (toggle) {
-      print("toggle T and alarm Id is $id");
       activeAlarmList.remove(
         Alarm.getAlarm(id),
       );
@@ -96,9 +94,7 @@ class AppCubit extends Cubit<AppState> {
             activeAlarmList: activeAlarmList),
       );
 
-      print("alarm list is $alarmList and active is $activeAlarmList");
     } else {
-      print("toggle F");
       activeAlarmListIndex.add(id);
 
       final activeAlarmSettingItem = state.alarmList[index];
@@ -291,7 +287,6 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void initState(AlarmSettings? alarmSettings) {
-    print("volume is ${state.volume}");
     emit(
       state.copyWith(
           creating: alarmSettings == null, actionCount: state.actionCount + 1),
