@@ -3,6 +3,7 @@ import 'package:alarm/model/alarm_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clock/cubit/app_cubit.dart';
+import 'package:lottie/lottie.dart';
 
 class AlarmRingScreen extends StatelessWidget {
   final AlarmSettings alarmSettings;
@@ -20,7 +21,14 @@ class AlarmRingScreen extends StatelessWidget {
               "${alarmSettings.dateTime.hour}:${alarmSettings.dateTime.minute} Alarm",
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
             ),
-            const Text("🔔", style: TextStyle(fontSize: 50)),
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: Lottie.asset(
+                "assets/lottie/ring_alarm.json",
+                fit: BoxFit.cover,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -50,8 +58,8 @@ class AlarmRingScreen extends StatelessWidget {
                   onPressed: () {
                     Alarm.stop(alarmSettings.id).then(
                       (value) {
-                          Navigator.pop(context);
-                          context.read<AppCubit>().getAlarmList();
+                        Navigator.pop(context);
+                        context.read<AppCubit>().getAlarmList();
                       },
                     );
                   },

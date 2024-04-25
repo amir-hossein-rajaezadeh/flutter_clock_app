@@ -61,7 +61,6 @@ class _MainPageState extends State<MainPage>
   @override
   void dispose() {
     _tabController.dispose();
-    subscription?.cancel();
     super.dispose();
   }
 

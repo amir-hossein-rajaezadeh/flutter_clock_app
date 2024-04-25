@@ -128,7 +128,7 @@ class _ExampleAlarmEditScreenState extends State<CreateEditScreen> {
                 children: [
                   Text('Custom volume',
                       style:
-                          Theme.of(context).textTheme.titleMedium?.copyWith()),
+                          Theme.of(context).textTheme.titleMedium ),
                   Switch(
                     value: state.volume != null,
                     onChanged: (value) =>

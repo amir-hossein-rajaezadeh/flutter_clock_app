@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter_clock/utils/theme_detector.dart';
+
 import 'clock_text.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class ClockDialPainter extends CustomPainter {
 
   final double tickLength = 8.0;
   final double tickWidth = 3.0;
-
+  BuildContext context;
   final romanNumeralList = [
     'XII',
     'I',
@@ -34,7 +36,7 @@ class ClockDialPainter extends CustomPainter {
     'XI'
   ];
 
-  ClockDialPainter({this.clockText = ClockText.roman})
+  ClockDialPainter({this.clockText = ClockText.roman, required this.context})
       : tickPaint = Paint(),
         textPainter = TextPainter(
           textAlign: TextAlign.center,
@@ -45,7 +47,9 @@ class ClockDialPainter extends CustomPainter {
           fontFamily: 'Times New Roman',
           fontSize: 0.0,
         ) {
-    tickPaint.color = Colors.grey;
+    tickPaint.color = ThemeDetector().isDarkModeEnabled(context)
+        ? Colors.white
+        : Colors.black;
   }
 
   @override

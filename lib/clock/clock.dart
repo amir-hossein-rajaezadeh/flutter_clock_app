@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter_clock/utils/my_colors.dart';
 import 'package:flutter_clock/utils/theme_detector.dart';
 import 'clock_dial_painter.dart';
 import 'clock_hands.dart';
@@ -72,7 +71,7 @@ class _Clock extends State<Clock> {
       decoration: BoxDecoration(
         color: ThemeDetector().isDarkModeEnabled(context)
             ? const Color(0xFF15264f)
-            : MyColors.mediumWhite,
+            : Colors.transparent,
         shape: BoxShape.circle,
       ),
       child: Padding(
@@ -84,8 +83,7 @@ class _Clock extends State<Clock> {
               width: double.infinity,
               child: CustomPaint(
                 painter: ClockDialPainter(
-                  clockText: widget.clockText,
-                ),
+                    clockText: widget.clockText, context: context),
               ),
             ),
             ClockHands(
