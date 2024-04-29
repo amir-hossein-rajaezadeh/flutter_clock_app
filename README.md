@@ -6,6 +6,7 @@ It's important to mention that the app's UI/UX was designed by me. I invested a 
 
 
 **Features:**
+
 - Animated theme switcher like the Telegram app
 
 - Set alarm(alarms work even when the app is in background)
@@ -24,17 +25,20 @@ It's important to mention that the app's UI/UX was designed by me. I invested a 
 
 
 
+
+
 **Technologies:**
-clock: ^1.1.1
-go_router: ^13.2.4
-public_ip_address: ^1.2.0
-flutter_bloc: ^8.1.5
-equatable: ^2.0.5
-lottie: ^3.1.0
-alarm: ^3.1.0
-bloc: ^8.1.4
-permission_handler: ^11.1.0
-animated_theme_switcher: "^2.0.8"
+
+- clock: ^1.1.1
+- go_router: ^13.2.4
+- public_ip_address: ^1.2.0
+- flutter_bloc: ^8.1.5
+- equatable: ^2.0.5
+- lottie: ^3.1.0
+- alarm: ^3.1.0
+- bloc: ^8.1.4
+- permission_handler: ^11.1.0
+- animated_theme_switcher: "^2.0.8"
 
 
 
