@@ -3,6 +3,8 @@ This Flutter alarm app utilizes multiple technologies such as flutter_bloc, alar
 
 It's important to mention that the app's UI/UX was designed by me. I invested a lot of effort into making this app and hope You like it.
 
+
+
 **Features:**
 - Animated theme switcher like the Telegram app
 
@@ -21,6 +23,7 @@ It's important to mention that the app's UI/UX was designed by me. I invested a 
 - Clean Design(UI/UX)
 
 
+
 **Technologies:**
 clock: ^1.1.1
 go_router: ^13.2.4
@@ -35,8 +38,7 @@ animated_theme_switcher: "^2.0.8"
 
 
 
-** If you like it, please star the project⭐️
-**
+** If you like it, please star the project⭐️**
 
 
 
