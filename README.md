@@ -1,8 +1,7 @@
 # flutter_clock
 This Flutter alarm app utilizes multiple technologies such as flutter_bloc, alarm, go_router, clock, permission_handler, public_ip_address, and Lottie. It is a fully functional app that enables you to set alarms, customize them, and edit them according to your preferences. The app is highly adaptable and provides features such as selecting different alarm sounds, adjusting the volume, and looping the audio. Additionally, the app has an animated dark-light theme that enhances the user experience. 
 
-It's important to mention that the app's UI/UX was designed by me. I invested a lot of effort into making this app and hope that You will find it interesting. If you do, please star it ⭐️
-
+It's important to mention that the app's UI/UX was designed by me. I invested a lot of effort into making this app and hope You like it.
 
 **Features:**
 - Animated theme switcher like the Telegram app
@@ -36,6 +35,8 @@ animated_theme_switcher: "^2.0.8"
 
 
 
+** If you like it, please star the project⭐️
+**
 
 
 
